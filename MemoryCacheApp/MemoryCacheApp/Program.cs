@@ -23,22 +23,15 @@ namespace MemoryCacheApp
             var personFromCache = memoryCache.Get<Person>("person1");
 
             Console.WriteLine($"From DefaultCache: {personFromCache}");
-            RedisImplementation();
+            // Redis implementation
+            var redisCache = new RedisCache();
+            string value = "hello!";
+            redisCache.Set("test", value);
+
+            var cachedValue = redisCache.Get("test");
+            Console.WriteLine(cachedValue);
+            
             Console.ReadLine();
-        }
-
-
-        static void RedisImplementation()
-        {
-            ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("localhost:5002");
-
-
-            IDatabase db = redis.GetDatabase();
-            string value = "abcdefg";
-            db.StringSet("mykey", value);
-
-            string cachedValue = db.StringGet("mykey");
-            Console.WriteLine(cachedValue); 
         }
     }
 }
