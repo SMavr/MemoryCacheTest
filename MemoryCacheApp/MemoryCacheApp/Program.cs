@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StackExchange.Redis;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,22 @@ namespace MemoryCacheApp
             var personFromCache = memoryCache.Get<Person>("person1");
 
             Console.WriteLine($"From DefaultCache: {personFromCache}");
+            RedisImplementation();
             Console.ReadLine();
+        }
+
+
+        static void RedisImplementation()
+        {
+            ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("localhost:5002");
+
+
+            IDatabase db = redis.GetDatabase();
+            string value = "abcdefg";
+            db.StringSet("mykey", value);
+
+            string cachedValue = db.StringGet("mykey");
+            Console.WriteLine(cachedValue); 
         }
     }
 }
