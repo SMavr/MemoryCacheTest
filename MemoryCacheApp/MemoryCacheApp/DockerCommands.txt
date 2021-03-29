@@ -1,6 +1,6 @@
 ﻿
 // Start docker redis with detached mode
-docker container run --name bsuite-redis -p 5002:6379 -d redis
+docker container run --name test-redis -p 5002:6379 -d redis
 
 // List all images
 docker image ls
