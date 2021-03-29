@@ -1,4 +1,5 @@
-﻿using StackExchange.Redis;
+﻿using Newtonsoft.Json;
+using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,5 +28,19 @@ namespace MemoryCacheApp
         {
             return db.StringGet(key);
         }
+
+        public async Task SetRecordAsync<T>(string key, T data)
+        {
+            string jsonData = JsonConvert.SerializeObject(data);
+            await db.StringSetAsync(key, jsonData);
+        }
+
+        public async Task<T> GetRecordAsync<T>(string key)
+        {
+            RedisValue jsonData = await db.StringGetAsync(key);
+            T data = JsonConvert.DeserializeObject<T>(jsonData);
+            return data;
+        }
+
     }
 }
