@@ -42,5 +42,10 @@ namespace MemoryCacheApp
             return data;
         }
 
+
+        public void TestExpiration()
+        {
+            db.StringSet("expire", "TestExpireData", TimeSpan.FromSeconds(60));
+        }
     }
 }

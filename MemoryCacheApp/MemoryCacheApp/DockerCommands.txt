@@ -34,3 +34,5 @@ docker container stop test-redis
 // rm test-redis container
 docker container rm test-redis
 
+// redis benchmark
+redis-benchmark -q -n 100000

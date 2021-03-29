@@ -17,7 +17,7 @@ namespace MemoryCacheApp
             UsedDefaultCache(person);
 
             // Redis implementation
-            //UserRedisCache();
+            UserRedisCache();
             await UserRedisCache(person);
 
             Console.ReadLine();
@@ -37,9 +37,9 @@ namespace MemoryCacheApp
         {
             var redisCache = new RedisCache();
             string value = "hello!";
-            redisCache.Set("test", value);
+            redisCache.Set("test2", value);
 
-            var cachedValue = redisCache.Get("test");
+            var cachedValue = redisCache.Get("test2");
 
             Console.WriteLine($"From Redis: {cachedValue}");
         }
