@@ -47,5 +47,18 @@ namespace MemoryCacheApp
         {
             db.StringSet("expire", "TestExpireData", TimeSpan.FromSeconds(60));
         }
+
+        public async Task SetHashRecordAsync<T> (string key, string hashField, T data)
+        {
+            string jsonData = JsonConvert.SerializeObject(data);
+            await db.HashSetAsync(key, hashField, jsonData);
+        }
+
+        public async Task<T> GetHashRecordAsync<T>(string key, string hashField)
+        {
+            var jsonData = await db.HashGetAsync(key, hashField);
+            T data = JsonConvert.DeserializeObject<T>(jsonData);
+            return data;
+        }
     }
 }
