@@ -10,6 +10,7 @@ docker container ls
 
 // Open interactive shell
 // winpty is a Windows software package providing an interface similar to a Unix pty-master for communicating with Windows console programs.
+// No need for winpty in windows server
 winpty docker exec -it test-redis sh
 
 // Open command line interface inside redis container
@@ -22,6 +23,9 @@ dbsize
 scan 0
 hgetall "RedisDemo_Seamen_20210129_0406"
 https://redis.io/commands
+
+// check redis version
+redis-cli -v
 
 // stop test-redis container
 docker stop test-redis
