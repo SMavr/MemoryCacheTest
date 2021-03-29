@@ -1,0 +1,32 @@
+﻿
+// Start docker redis with detached mode
+docker container run --name bsuite-redis -p 5002:6379 -d redis
+
+// List all images
+docker image ls
+
+// List all containers
+docker container ls
+
+// Open interactive shell
+// winpty is a Windows software package providing an interface similar to a Unix pty-master for communicating with Windows console programs.
+winpty docker exec -it test-redis sh
+
+// Open command line interface inside redis container
+redis-cli
+
+// Redis commands in shell
+ping
+select 0
+dbsize
+scan 0
+hgetall "RedisDemo_Seamen_20210129_0406"
+https://redis.io/commands
+
+// stop test-redis container
+docker stop test-redis
+docker container stop test-redis
+
+// rm test-redis container
+docker container rm test-redis
+

@@ -29,7 +29,7 @@ namespace MemoryCacheApp
             redisCache.Set("test", value);
 
             var cachedValue = redisCache.Get("test");
-            Console.WriteLine(cachedValue);
+            Console.WriteLine($"From Redis: {cachedValue}");
             
             Console.ReadLine();
         }
