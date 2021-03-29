@@ -18,17 +18,21 @@ namespace MemoryCacheApp
                 LastName = "Testy"
             };
 
+            // Microsoft implementation
             memoryCache.Set("person1", person);
 
             var personFromCache = memoryCache.Get<Person>("person1");
 
             Console.WriteLine($"From DefaultCache: {personFromCache}");
+
+
             // Redis implementation
             var redisCache = new RedisCache();
             string value = "hello!";
             redisCache.Set("test", value);
 
             var cachedValue = redisCache.Get("test");
+
             Console.WriteLine($"From Redis: {cachedValue}");
             
             Console.ReadLine();
