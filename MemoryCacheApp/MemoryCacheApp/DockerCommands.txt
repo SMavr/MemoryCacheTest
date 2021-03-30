@@ -3,7 +3,7 @@
 docker container run --name test-redis -p 5002:6379 -d redis
 
 // Start redis with config file
-docker run --name test-redis -p 5002:6379 -v /c/Projects/GitHub/MemoryCacheTest/redis/redis.conf:/usr/local/etc/redis/redis.conf -d redis 
+docker run --name test-redis -p 5002:6379 -v /c/Projects/GitHub/MemoryCacheTest/redis/redis.conf:/usr/local/etc/redis/redis.conf -d redis redis-server /usr/local/etc/redis/redis.conf
 
 // List all images
 docker image ls
@@ -34,9 +34,15 @@ redis-cli -v
 docker stop test-redis
 docker container stop test-redis
 
+// stop and remove redis container
+docker rm -f test-redis
+
 // rm test-redis container
 docker container rm test-redis
 
 // redis benchmark
 redis-benchmark -q -n 100000
+
+// set protected mode to yes
+protected-mode no
 
