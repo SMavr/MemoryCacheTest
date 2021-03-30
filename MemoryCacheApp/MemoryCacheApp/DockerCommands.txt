@@ -2,6 +2,9 @@
 // Start docker redis with detached mode
 docker container run --name test-redis -p 5002:6379 -d redis
 
+// Start redis with config file
+docker run -v /c/Projects/GitHub/MemoryCacheTest/redis:/usr/local/etc/redis --ame test-redis -p 5002:6379 redis
+
 // List all images
 docker image ls
 
@@ -36,3 +39,4 @@ docker container rm test-redis
 
 // redis benchmark
 redis-benchmark -q -n 100000
+
