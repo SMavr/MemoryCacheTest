@@ -3,7 +3,7 @@
 docker container run --name test-redis -p 5002:6379 -d redis
 
 // Start redis with config file
-docker run -v /c/Projects/GitHub/MemoryCacheTest/redis:/usr/local/etc/redis --ame test-redis -p 5002:6379 redis
+docker run --name test-redis -p 5002:6379 -v /c/Projects/GitHub/MemoryCacheTest/redis/redis.conf:/usr/local/etc/redis/redis.conf -d redis 
 
 // List all images
 docker image ls
