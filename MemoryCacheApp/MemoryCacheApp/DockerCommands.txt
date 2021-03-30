@@ -46,3 +46,5 @@ redis-benchmark -q -n 100000
 // set protected mode to yes
 protected-mode no
 
+// docker config
+docker run --name test-redis -p 5002:6379 -d redis-config
