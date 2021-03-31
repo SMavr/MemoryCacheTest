@@ -48,3 +48,9 @@ protected-mode no
 
 // docker config
 docker run --name test-redis -p 5002:6379 -d redis-config
+
+// save image
+docker save -o /DockerImages/Image_Production redis-config
+
+// load image
+ docker load -i Image_Production
