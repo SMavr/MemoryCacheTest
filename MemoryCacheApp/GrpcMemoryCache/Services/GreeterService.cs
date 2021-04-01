@@ -19,7 +19,7 @@ namespace GrpcMemoryCache
         {
             return Task.FromResult(new HelloReply
             {
-                Message = "Hello " + request.Name
+                Message = "Hello from stam " + request.Name
             });
         }
     }

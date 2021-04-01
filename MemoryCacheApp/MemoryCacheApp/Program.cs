@@ -1,4 +1,5 @@
-﻿using StackExchange.Redis;
+﻿using Grpc.Core;
+using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -112,6 +113,21 @@ namespace MemoryCacheApp
                 FirstName = "Test",
                 LastName = "Testy"
             };
+        }
+
+        private static void TestGrpc()
+        {
+            Channel channel = new Channel("127.0.0.1:5000", ChannelCredentials.Insecure);
+
+            var client = new Greeter.GreeterClient(channel);
+            String user = "you";
+
+            var reply = client.SayHello(new HelloRequest { Name = user });
+            Console.WriteLine("Greeting: " + reply.Message);
+
+            channel.ShutdownAsync().Wait();
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
         }
     }
 }
