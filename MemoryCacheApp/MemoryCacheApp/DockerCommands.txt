@@ -57,3 +57,7 @@ docker save -o /DockerImages/Image_Production redis-config
 
 // docker build cache
 docker build -t testy -f GrpcMemoryCache/Dockerfile .
+
+
+// docker run container
+ docker run --name testy-container -p 5000:80 -p 5004:443 -d testy

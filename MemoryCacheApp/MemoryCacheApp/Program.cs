@@ -20,8 +20,8 @@ namespace MemoryCacheApp
 
             // Redis implementation
             //UseRedisCache();
-            //await UseRedisCache(person);
-            //await UseHashRedisCache(person);
+            await UseRedisCache(person);
+            await UseHashRedisCache(person);
 
             //await BenchMarkCache();
             await TestGrpc();
@@ -117,7 +117,7 @@ namespace MemoryCacheApp
 
         private static async Task TestGrpc()
         {
-            Channel channel = new Channel("localhost:49162", ChannelCredentials.Insecure);
+            Channel channel = new Channel("localhost:5000", ChannelCredentials.Insecure);
 
             var client = new Greeter.GreeterClient(channel);
             String user = "you";
