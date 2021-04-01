@@ -16,15 +16,15 @@ namespace MemoryCacheApp
             Person person = CreateTestPerson();
 
             // Microsoft implementation
-            UsedDefaultCache(person);
+            //UsedDefaultCache(person);
 
             // Redis implementation
             //UseRedisCache();
-            await UseRedisCache(person);
-            await UseHashRedisCache(person);
+            //await UseRedisCache(person);
+            //await UseHashRedisCache(person);
 
-            await BenchMarkCache();
-           
+            //await BenchMarkCache();
+            await TestGrpc();
 
             Console.ReadLine();
         }
@@ -115,7 +115,7 @@ namespace MemoryCacheApp
             };
         }
 
-        private static void TestGrpc()
+        private static async Task TestGrpc()
         {
             Channel channel = new Channel("127.0.0.1:5000", ChannelCredentials.Insecure);
 
@@ -125,7 +125,7 @@ namespace MemoryCacheApp
             var reply = client.SayHello(new HelloRequest { Name = user });
             Console.WriteLine("Greeting: " + reply.Message);
 
-            channel.ShutdownAsync().Wait();
+            await channel.ShutdownAsync();
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
         }
