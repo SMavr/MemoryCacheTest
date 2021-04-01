@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryCacheApp", "MemoryCacheApp\MemoryCacheApp.csproj", "{81FE21F7-51D9-4972-A1FB-5B6008E44E3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcMemoryCache", "GrpcMemoryCache\GrpcMemoryCache.csproj", "{FED257A2-00F9-4BAB-B5E3-F6C4FB2099D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcMemoryCache", "GrpcMemoryCache\GrpcMemoryCache.csproj", "{FED257A2-00F9-4BAB-B5E3-F6C4FB2099D1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestClient2", "TestClient2\TestClient2.csproj", "{16363BDC-0180-438C-A14E-A243D087F556}"
 EndProject
