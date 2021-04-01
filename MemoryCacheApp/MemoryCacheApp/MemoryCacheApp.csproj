@@ -82,6 +82,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <Protobuf Include="Protos\memoryCache.proto" />
     <Protobuf Include="Protos\greet.proto">
       <Generator>MSBuild:Compile</Generator>
     </Protobuf>

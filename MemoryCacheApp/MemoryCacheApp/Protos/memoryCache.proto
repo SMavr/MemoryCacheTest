@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option csharp_namespace = "MemoryCacheApp";
+
+package memoryCache;
+
+
+service MemoryCache {
+  rpc Save (CacheKeyValue) returns (CacheSavedReply);
+  rpc Get (CacheKey) returns (CacheValue);
+}
+
+message CacheKeyValue {
+  string key = 1;
+  string value = 2;
+}
+
+message CacheSavedReply {
+  string message = 1;
+}
+
+message CacheKey {
+  string key = 1;
+}
+
+message CacheValue {
+	string value = 1;
+}

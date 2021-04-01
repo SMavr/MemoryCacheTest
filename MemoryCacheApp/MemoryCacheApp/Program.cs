@@ -24,7 +24,9 @@ namespace MemoryCacheApp
             //await UseHashRedisCache(person);
 
             ////await BenchMarkCache();
-            await TestGrpc();
+            //await TestGrpc();
+
+            await TestGrpcMemoryCache();
 
             Console.ReadLine();
         }
@@ -128,6 +130,22 @@ namespace MemoryCacheApp
             await channel.ShutdownAsync();
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
+        }
+
+        private static async Task TestGrpcMemoryCache()
+        {
+            Channel channel = new Channel("localhost:5000", ChannelCredentials.Insecure);
+
+
+            var client = new MemoryCache.MemoryCacheClient(channel);
+
+            var reply = await client.SaveAsync(new CacheKeyValue { Key = "grpc_memcache", Value = "hello from grpc Redis!" });
+
+            Console.WriteLine($"Reply from Grpc: {reply}");
+
+            var cachedValue = await client.GetAsync(new CacheKey = "grpc_memcache");
+
+            Console.WriteLine($"CachedValue: {cachedValue}");
         }
     }
 }
