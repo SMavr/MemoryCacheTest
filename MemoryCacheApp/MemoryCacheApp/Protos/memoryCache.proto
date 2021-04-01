@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option csharp_namespace = "MemoryCacheApp";
+option csharp_namespace = "GrpcMemoryCache.Protos";
 
 package memoryCache;
 

@@ -7,28 +7,28 @@ using System.Threading.Tasks;
 
 namespace MemoryCacheApp
 {
-    public class DefaultMemoryCache
-    {
-        private readonly MemoryCache memoryCache;
-        private readonly CacheItemPolicy cacheItemPolicy;
+    //public class DefaultMemoryCache
+    //{
+    //    private readonly MemoryCache memoryCache;
+    //    private readonly CacheItemPolicy cacheItemPolicy;
 
-        public DefaultMemoryCache()
-        {
-            this.memoryCache = new MemoryCache("Test");
-            this.cacheItemPolicy = new CacheItemPolicy()
-            {
-                SlidingExpiration = TimeSpan.FromSeconds(60)
-            };
-        }
+    //    public DefaultMemoryCache()
+    //    {
+    //        this.memoryCache = new MemoryCache("Test");
+    //        this.cacheItemPolicy = new CacheItemPolicy()
+    //        {
+    //            SlidingExpiration = TimeSpan.FromSeconds(60)
+    //        };
+    //    }
 
-        public T Get<T>(string key)
-        {
-            return (T)memoryCache.Get(key);
-        }
+    //    public T Get<T>(string key)
+    //    {
+    //        return (T)memoryCache.Get(key);
+    //    }
 
-        public void Set<T>(string key, T value)
-        {
-            memoryCache.Set(key, value, cacheItemPolicy);
-        }
-    }
+    //    public void Set<T>(string key, T value)
+    //    {
+    //        memoryCache.Set(key, value, cacheItemPolicy);
+    //    }
+    //}
 }

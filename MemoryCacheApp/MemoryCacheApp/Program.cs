@@ -1,4 +1,5 @@
 ﻿using Grpc.Core;
+using GrpcMemoryCache.Protos;
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
@@ -63,26 +64,26 @@ namespace MemoryCacheApp
             Console.WriteLine($"From Redis: {cachedValue}");
         }
 
-        private static void UsedDefaultCache(Person person)
-        {
-            var memoryCache = new DefaultMemoryCache();
+        //private static void UsedDefaultCache(Person person)
+        //{
+        //    var memoryCache = new DefaultMemoryCache();
 
-            memoryCache.Set("person1", person);
+        //    memoryCache.Set("person1", person);
 
-            var personFromCache = memoryCache.Get<Person>("person1");
+        //    var personFromCache = memoryCache.Get<Person>("person1");
 
-            Console.WriteLine($"From DefaultCache: {personFromCache}");
-        }
+        //    Console.WriteLine($"From DefaultCache: {personFromCache}");
+        //}
 
         private static async Task BenchMarkCache()
         {
             RedisCache redisCache = new RedisCache();
-            DefaultMemoryCache memoryCache = new DefaultMemoryCache();
+            //DefaultMemoryCache memoryCache = new DefaultMemoryCache();
 
             // DEFAULT MEMORY
             Stopwatch stopwatch = Stopwatch.StartNew();
            
-            Person personFromCache = memoryCache.Get<Person>("person1");
+            //Person personFromCache = memoryCache.Get<Person>("person1");
 
             stopwatch.Stop();
 
@@ -139,13 +140,16 @@ namespace MemoryCacheApp
 
             var client = new MemoryCache.MemoryCacheClient(channel);
 
+
             var reply = await client.SaveAsync(new CacheKeyValue { Key = "grpc_memcache", Value = "hello from grpc Redis!" });
 
             Console.WriteLine($"Reply from Grpc: {reply}");
 
-            var cachedValue = await client.GetAsync(new CacheKey = "grpc_memcache");
+            var cachedValue =  await client.GetAsync(new CacheKey { Key = "grpc_memcache" });
 
             Console.WriteLine($"CachedValue: {cachedValue}");
+
+            await channel.ShutdownAsync();
         }
     }
 }
