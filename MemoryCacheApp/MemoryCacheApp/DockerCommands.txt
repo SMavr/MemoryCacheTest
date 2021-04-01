@@ -54,3 +54,6 @@ docker save -o /DockerImages/Image_Production redis-config
 
 // load image
  docker load -i Image_Production
+
+// docker build cache
+docker build -t testy -f GrpcMemoryCache/Dockerfile .
