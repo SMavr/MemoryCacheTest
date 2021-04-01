@@ -9,14 +9,35 @@ namespace GrpcMemoryCache.Services
 {
     public class MemoryCacheService : MemoryCache.MemoryCacheBase
     {
-        public override Task<CacheSavedReply> Save(CacheKeyValue request, ServerCallContext context)
+
+        RedisCache redisCache = new RedisCache();
+
+        public override async Task<CacheSavedReply> Save(CacheKeyValue request, ServerCallContext context)
         {
-            return base.Save(request, context);
+            try 
+            {
+                await Task.Run(() => redisCache.Set(request.Key, request.Value));
+                return new CacheSavedReply
+                {
+                    Message = $"{request.Value} saved in memory cache!"
+                };
+            }
+            catch (Exception ex)
+            {
+                return new CacheSavedReply
+                {
+                    Message = ex.Message
+                };
+            }
         }
 
-        public override Task<CacheValue> Get(CacheKey request, ServerCallContext context)
+        public override async Task<CacheValue> Get(CacheKey request, ServerCallContext context)
         {
-            return base.Get(request, context);
+            var cacheValue = await Task.Run(() => redisCache.Get(request.Key));
+            return new CacheValue
+            {
+                Value = cacheValue
+            };
         }
     }
 }

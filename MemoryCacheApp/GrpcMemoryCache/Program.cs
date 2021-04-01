@@ -12,7 +12,6 @@ namespace GrpcMemoryCache
     {
         public static void Main(string[] args)
         {
-            UseRedisCache();
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -26,16 +25,6 @@ namespace GrpcMemoryCache
                 });
 
 
-        private static void UseRedisCache()
-        {
-            var redisCache = new RedisCache();
-            string value = "I come from grpc!";
-            redisCache.Set("grpctest", value);
-
-            var cachedValue = redisCache.Get("grpctest");
-
-            Console.WriteLine($"From Redis: {cachedValue}");
-        }
-
+       
     }
 }
