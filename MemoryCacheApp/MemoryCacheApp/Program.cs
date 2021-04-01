@@ -20,10 +20,10 @@ namespace MemoryCacheApp
 
             // Redis implementation
             //UseRedisCache();
-            await UseRedisCache(person);
-            await UseHashRedisCache(person);
+            //await UseRedisCache(person);
+            //await UseHashRedisCache(person);
 
-            //await BenchMarkCache();
+            ////await BenchMarkCache();
             await TestGrpc();
 
             Console.ReadLine();

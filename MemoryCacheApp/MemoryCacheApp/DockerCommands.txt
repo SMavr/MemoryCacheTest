@@ -51,13 +51,14 @@ docker run --name test-redis -p 5002:6379 -d redis-config
 
 // save image
 docker save -o /DockerImages/Image_Production redis-config
+docker save -o /DockerImages/Image_Grpc_Production grpc_cache_image
 
 // load image
  docker load -i Image_Production
 
 // docker build cache
-docker build -t testy -f GrpcMemoryCache/Dockerfile .
+docker build -t grpc_cache_image -f GrpcMemoryCache/Dockerfile .
 
 
 // docker run container
- docker run --name testy-container -p 5000:80 -p 5004:443 -d testy
+ docker run --name grpc_cache_container -p 5000:80 -p 5004:443 -d grpc_cache_image
